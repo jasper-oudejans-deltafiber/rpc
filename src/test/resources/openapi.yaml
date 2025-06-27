@@ -41,13 +41,13 @@ paths:
           content:
             '*/*':
               schema:
-                $ref: '#/components/schemas/ApiResponse'
+                $ref: "#/components/schemas/ApiResponse"
         "200":
           description: User found successfully
           content:
             '*/*':
               schema:
-                $ref: '#/components/schemas/ApiResponse'
+                $ref: "#/components/schemas/ApiResponse"
     put:
       tags:
       - User Management
@@ -66,7 +66,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UpdateUserRequest'
+              $ref: "#/components/schemas/UpdateUserRequest"
         required: true
       responses:
         "404":
@@ -74,19 +74,19 @@ paths:
           content:
             '*/*':
               schema:
-                $ref: '#/components/schemas/ApiResponse'
+                $ref: "#/components/schemas/ApiResponse"
         "400":
           description: Invalid input data
           content:
             '*/*':
               schema:
-                $ref: '#/components/schemas/ApiResponse'
+                $ref: "#/components/schemas/ApiResponse"
         "200":
           description: User updated successfully
           content:
             '*/*':
               schema:
-                $ref: '#/components/schemas/ApiResponse'
+                $ref: "#/components/schemas/ApiResponse"
     delete:
       tags:
       - User Management
@@ -102,30 +102,31 @@ paths:
           type: integer
           format: int64
       responses:
-        "404":
-          description: User not found
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ApiResponse'
         "200":
           description: User deleted successfully
           content:
             '*/*':
               schema:
-                $ref: '#/components/schemas/ApiResponse'
+                $ref: "#/components/schemas/ApiResponse"
+        "404":
+          description: User not found
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ApiResponse"
   /rpc:
     post:
       tags:
       - RPC Service
       summary: Execute RPC call
-      description: Unified JSON-RPC endpoint using discriminated union for params based on method field
+      description: Unified JSON-RPC endpoint using discriminated union for params
+        based on method field
       operationId: handleUnifiedRpcCall
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UnifiedRpcRequest'
+              $ref: "#/components/schemas/UnifiedRpcRequest"
             examples:
               Reboot with typed params:
                 description: Reboot with typed params
@@ -156,7 +157,7 @@ paths:
           content:
             '*/*':
               schema:
-                $ref: '#/components/schemas/UnifiedRpcResponse'
+                $ref: "#/components/schemas/UnifiedRpcResponse"
   /api/users:
     get:
       tags:
@@ -170,7 +171,7 @@ paths:
           content:
             '*/*':
               schema:
-                $ref: '#/components/schemas/ApiResponse'
+                $ref: "#/components/schemas/ApiResponse"
     post:
       tags:
       - User Management
@@ -181,7 +182,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CreateUserRequest'
+              $ref: "#/components/schemas/CreateUserRequest"
         required: true
       responses:
         "201":
@@ -189,13 +190,13 @@ paths:
           content:
             '*/*':
               schema:
-                $ref: '#/components/schemas/ApiResponse'
+                $ref: "#/components/schemas/ApiResponse"
         "400":
           description: Invalid input data
           content:
             '*/*':
               schema:
-                $ref: '#/components/schemas/ApiResponse'
+                $ref: "#/components/schemas/ApiResponse"
 components:
   schemas:
     UpdateUserRequest:
@@ -221,19 +222,6 @@ components:
           type: string
         data:
           type: object
-    RpcError:
-      type: object
-      properties:
-        code:
-          type: integer
-          description: Error code
-          format: int32
-          example: -1
-        message:
-          type: string
-          description: Error message
-          example: "Unknown method: invalid_method"
-      description: RPC error details
     RebootRequest:
       type: object
       properties:
@@ -277,15 +265,15 @@ components:
       type: object
       properties:
         rebootParams:
-          $ref: '#/components/schemas/RebootRequest'
+          $ref: "#/components/schemas/RebootRequest"
         statusParams:
-          $ref: '#/components/schemas/StatusRequest'
+          $ref: "#/components/schemas/StatusRequest"
         shutdownParams:
-          $ref: '#/components/schemas/ShutdownRequest'
+          $ref: "#/components/schemas/ShutdownRequest"
         restartParams:
-          $ref: '#/components/schemas/RestartRequest'
+          $ref: "#/components/schemas/RestartRequest"
         versionParams:
-          $ref: '#/components/schemas/VersionRequest'
+          $ref: "#/components/schemas/VersionRequest"
         method:
           type: string
           description: RPC method name
@@ -300,11 +288,11 @@ components:
           type: object
           description: Method-specific parameters discriminated by method field
           oneOf:
-          - $ref: '#/components/schemas/RebootRequest'
-          - $ref: '#/components/schemas/StatusRequest'
-          - $ref: '#/components/schemas/ShutdownRequest'
-          - $ref: '#/components/schemas/RestartRequest'
-          - $ref: '#/components/schemas/VersionRequest'
+          - $ref: "#/components/schemas/RebootRequest"
+          - $ref: "#/components/schemas/StatusRequest"
+          - $ref: "#/components/schemas/ShutdownRequest"
+          - $ref: "#/components/schemas/RestartRequest"
+          - $ref: "#/components/schemas/VersionRequest"
         id:
           type: string
           description: Request identifier
@@ -357,6 +345,19 @@ components:
           description: Estimated duration for restart
           example: 10 seconds
       description: Restart operation result
+    RpcError:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: Error code
+          format: int32
+          example: -1
+        message:
+          type: string
+          description: Error message
+          example: "Unknown method: invalid_method"
+      description: RPC error details
     ShutdownResponse:
       type: object
       properties:
@@ -411,26 +412,26 @@ components:
       type: object
       properties:
         rebootResult:
-          $ref: '#/components/schemas/RebootResponse'
+          $ref: "#/components/schemas/RebootResponse"
         statusResult:
-          $ref: '#/components/schemas/StatusResponse'
+          $ref: "#/components/schemas/StatusResponse"
         shutdownResult:
-          $ref: '#/components/schemas/ShutdownResponse'
+          $ref: "#/components/schemas/ShutdownResponse"
         restartResult:
-          $ref: '#/components/schemas/RestartResponse'
+          $ref: "#/components/schemas/RestartResponse"
         versionResult:
-          $ref: '#/components/schemas/VersionResponse'
+          $ref: "#/components/schemas/VersionResponse"
         result:
           type: object
           description: Method-specific result discriminated by method field
           oneOf:
-          - $ref: '#/components/schemas/RebootResponse'
-          - $ref: '#/components/schemas/StatusResponse'
-          - $ref: '#/components/schemas/ShutdownResponse'
-          - $ref: '#/components/schemas/RestartResponse'
-          - $ref: '#/components/schemas/VersionResponse'
+          - $ref: "#/components/schemas/RebootResponse"
+          - $ref: "#/components/schemas/StatusResponse"
+          - $ref: "#/components/schemas/ShutdownResponse"
+          - $ref: "#/components/schemas/RestartResponse"
+          - $ref: "#/components/schemas/VersionResponse"
         error:
-          $ref: '#/components/schemas/RpcError'
+          $ref: "#/components/schemas/RpcError"
         id:
           type: string
           description: Request identifier

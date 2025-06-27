@@ -31,7 +31,7 @@ This Spring Boot application demonstrates how to build a unified API service tha
 ## Quick Start
 
 ### Prerequisites
-- Java 17+
+- Java 21+
 - Maven 3.6+
 
 ### Running the Application
@@ -146,8 +146,8 @@ UnifiedRpcResponse response = rpcApi.handleRpcRequest(statusRequest);
 
 ## Technology Stack
 
-- **Framework**: Spring Boot 3.2.12
-- **Language**: Java 17
+- **Framework**: Spring Boot 3.4.1
+- **Language**: Java 21
 - **Build Tool**: Maven
 - **Documentation**: OpenAPI 3.0 (SpringDoc)
 - **Validation**: Jakarta Bean Validation
